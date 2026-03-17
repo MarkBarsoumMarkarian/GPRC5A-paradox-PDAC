@@ -1,0 +1,3 @@
+"Stratum","n","HR","CI_lower","CI_upper","p_value"
+"All patients",177,1.362,1.173,1.582,"5.26e-05"
+"Gemcitabine-treated",75,1.224,0.886,1.69,"0.221"

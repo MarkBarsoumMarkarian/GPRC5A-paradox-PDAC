@@ -1,0 +1,4 @@
+"Model","CV_AUC","CV_Sens","CV_Spec","CV_method","Test_AUC","Test_Acc"
+"Logistic",0.756,0.667,0.741,"LOOCV",0.639,0.667
+"RandomForest",0.758,0.667,0.667,"LOOCV",0.833,0.75
+"XGBoost",0.694,0.889,0.593,"LOOCV",0.75,0.667

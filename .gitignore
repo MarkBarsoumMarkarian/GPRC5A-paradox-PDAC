@@ -1,0 +1,17 @@
+# Data files (not tracked - see README for access)
+data/
+*.rds
+*.rda
+
+# Large outputs
+results/figures/*.pdf
+
+# R session
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# OS
+.DS_Store
+Thumbs.db

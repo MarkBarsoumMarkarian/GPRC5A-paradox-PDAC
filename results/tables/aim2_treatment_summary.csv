@@ -1,0 +1,10 @@
+"treatment_group","survival_group","n","median_gprc5a","median_OS_mo"
+"Fluorouracil/FOLFIRINOX","Alive",2,11.93,41.9
+"Fluorouracil/FOLFIRINOX","Deceased",2,13.265,8.9
+"Gemcitabine","Alive",41,14.107,16.4
+"Gemcitabine","Deceased",34,15.267,15.9
+"Other Chemotherapy","Alive",3,15.083,15.9
+"Other Chemotherapy","Deceased",2,14.19,21.5
+"Radiation only","Alive",38,13.98,18.2
+"Radiation only","Deceased",54,15.028,11.3
+"Treatment-naive / Unknown","Deceased",1,14.457,15.3

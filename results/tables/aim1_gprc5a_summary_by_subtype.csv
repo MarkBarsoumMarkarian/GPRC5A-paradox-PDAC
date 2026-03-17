@@ -1,0 +1,5 @@
+"subtype_moffitt","survival_group","n","median_gprc5a","mean_gprc5a","sd_gprc5a","median_OS_mo"
+"Basal-like","Alive",34,13.833,12.943,3.234,17.2
+"Basal-like","Deceased",43,14.985,14.681,1.268,9.6
+"Classical","Alive",50,14.109,13.418,2.605,16.2
+"Classical","Deceased",50,14.982,14.92,1.062,15.4

@@ -1,0 +1,13 @@
+"barcode","predicted_state","prob_oncogenic","prob_suppressive","true_state","vital_status","OS_months","subtype_moffitt","gprc5a_expr","OS_event"
+"TCGA-IB-A5SO-01A-11R-A32O-07","Oncogenic",0.564,0.436,"Oncogenic","Dead",11.9908015768725,"Classical",15.5324935233532,1
+"TCGA-FB-A7DR-01A-21R-A33R-07","Suppressive",0.442,0.558,"Oncogenic","Dead",11.5965834428384,"Classical",15.65147667573,1
+"TCGA-S4-A8RO-01A-12R-A37L-07","Oncogenic",0.7,0.3,"Suppressive","Alive",17.2470433639947,"Basal-like",15.9355507231715,0
+"TCGA-HV-A5A5-01A-11R-A26U-07","Suppressive",0.308,0.692,"Suppressive","Alive",9.49408672798949,"Classical",14.0704109325856,0
+"TCGA-HZ-A49H-01A-11R-A26U-07","Suppressive",0.342,0.658,"Suppressive","Alive",16.1300919842313,"Classical",13.140746261648,0
+"TCGA-2J-AABO-01A-21R-A41B-07","Oncogenic",0.516,0.484,"Suppressive","Alive",14.4546649145861,"Basal-like",15.4310829444481,0
+"TCGA-F2-7276-01A-11R-2156-07","Oncogenic",0.648,0.352,"Oncogenic","Dead",7.09592641261498,"Basal-like",12.5569278207451,1
+"TCGA-IB-7647-01A-11R-2156-07","Oncogenic",0.696,0.304,"Oncogenic","Dead",21.8791064388962,"Classical",15.413490515096,1
+"TCGA-IB-A5ST-01A-11R-A32O-07","Suppressive",0.388,0.612,"Suppressive","Alive",20.8607095926413,"Classical",13.2191340103185,0
+"TCGA-IB-7644-01A-11R-2156-07","Oncogenic",0.8,0.2,"Oncogenic","Dead",12.9434954007884,"Classical",15.5185828351279,1
+"TCGA-OE-A75W-01A-12R-A32O-07","Oncogenic",0.802,0.198,"Oncogenic","Dead",8.77135348226018,"Classical",15.2798846498186,1
+"TCGA-FB-AAPZ-01A-11R-A41B-07","Suppressive",0.484,0.516,"Suppressive","Alive",23.5216819973719,"Basal-like",16.0673046171574,0
