@@ -2,7 +2,7 @@
 
 **Mark Barsoum Markarian** · Faculty of Medicine, American University of Beirut · *manuscript in preparation*
 
-> **The paradox:** A machine learning biomarker screen found that GPRC5A — a known oncogene in pancreatic cancer — was *lower* in patients who died. That is the opposite of what the biology predicts. This repository is the full investigation into why.
+> **The paradox:** A machine learning biomarker screen found that GPRC5A, a known oncogene in pancreatic cancer, was *lower* in patients who died. That is the opposite of what the biology predicts. This repository is the full investigation into why.
 
 ---
 
