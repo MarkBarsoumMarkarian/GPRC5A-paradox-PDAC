@@ -8,11 +8,11 @@
 
 ## The Finding
 
-Prior work ([Markarian 2025, bioRxiv](https://doi.org/10.1101/2025.11.14.688421)) identified GPRC5A as prognostically relevant in PDAC but flagged a contradiction: reduced expression in deceased patients. Three explanations were possible — molecular subtype mixing, gemcitabine-induced transcriptional confounding, or post-transcriptional regulation. This five-aim pipeline tests all three.
+Prior work ([Markarian 2025, bioRxiv](https://doi.org/10.1101/2025.11.14.688421)) identified GPRC5A as prognostically relevant in PDAC but flagged a contradiction: reduced expression in deceased patients. Three explanations were possible, molecular subtype mixing, gemcitabine-induced transcriptional confounding, or post-transcriptional regulation. This five-aim pipeline tests all three.
 
 **Short answer: it is mostly Simpson's Paradox.**
 
-GPRC5A behaves differently depending on which molecular subtype of PDAC a tumor belongs to. When you pool both subtypes and look at bulk expression, the signal flips — not because the biology changed, but because the aggregate obscures two opposing subtype-specific associations.
+GPRC5A behaves differently depending on which molecular subtype of PDAC a tumor belongs to. When you pool both subtypes and look at bulk expression, the signal flips, not because the biology changed, but because the aggregate obscures two opposing subtype-specific associations.
 
 ---
 
