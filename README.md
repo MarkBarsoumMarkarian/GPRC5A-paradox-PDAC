@@ -69,7 +69,7 @@ No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regu
 
 | ![AlphaFold pLDDT](results/figures/aim4_plddt_mutation_overlay.png) | ![Lollipop mutation plot](results/figures/aim4_lollipop_mutation_plot.png) |
 |:---:|:---:|
-| *AlphaFold2 per-residue confidence with domain annotations* | *Empty somatic mutation track — null result is the finding* |
+| *AlphaFold2 per-residue confidence with domain annotations* | *Empty somatic mutation track, null result is the finding* |
 
 ---
 
@@ -83,7 +83,7 @@ A leakage-free Random Forest trained on subtype scores and co-expression feature
 
 | ![ROC curves](results/figures/aim5_roc_curves.png) | ![Feature importance](results/figures/aim5_feature_importance.png) |
 |:---:|:---:|
-| *Held-out test ROC — RF AUC=0.833* | *Classical co-expression features dominate (GPRC5A ranks 23rd)* |
+| *Held-out test ROC, RF AUC=0.833* | *Classical co-expression features dominate (GPRC5A ranks 23rd)* |
 
 | ![Calibration plot](results/figures/aim5_calibration_plot.png) | ![Role-state KM](results/figures/aim5_role_state_km.png) |
 |:---:|:---:|
