@@ -78,7 +78,7 @@ No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regu
 A leakage-free Random Forest trained on subtype scores and co-expression features predicts whether GPRC5A is acting oncogenically or suppressively in a given tumor.
 
 - Held-out test AUC: **0.833** · LOOCV AUC: 0.758  
-- GPRC5A expression ranks **23rd** in feature importance — the broader subtype context matters more than the gene itself  
+- GPRC5A expression ranks **23rd** in feature importance, the broader subtype context matters more than the gene itself  
 - *Caveat: labels incorporate vital status; AUC reflects proof-of-concept subtype-context encoding, not independent prognostic prediction*
 
 | ![ROC curves](results/figures/aim5_roc_curves.png) | ![Feature importance](results/figures/aim5_feature_importance.png) |
