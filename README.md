@@ -23,7 +23,7 @@ GPRC5A behaves differently depending on which molecular subtype of PDAC a tumor 
 Classical subtype (n=100): high GPRC5A → significantly **worse** survival (HR=1.53, p=0.0017)  
 Basal-like subtype (n=77): high GPRC5A → **better** relative survival (log-rank p=0.022)
 
-Pooling them without stratification creates an artifactual inverse signal — a textbook Simpson's Paradox.
+Pooling them without stratification creates an artifactual inverse signal... a textbook Simpson's Paradox.
 
 | ![KM curves by subtype](results/figures/aim1_kaplan_meier_by_subtype.png) | ![Forest plot](results/figures/aim1_forest_plot.png) |
 |:---:|:---:|
