@@ -18,7 +18,7 @@ GPRC5A behaves differently depending on which molecular subtype of PDAC a tumor 
 
 ## Key Results
 
-### Aim 1 — Subtype stratification explains the paradox
+### Aim 1: Subtype stratification explains the paradox
 
 Classical subtype (n=100): high GPRC5A → significantly **worse** survival (HR=1.53, p=0.0017)  
 Basal-like subtype (n=77): high GPRC5A → **better** relative survival (log-rank p=0.022)
@@ -39,9 +39,9 @@ Pooling them without stratification creates an artifactual inverse signal — a 
 
 ---
 
-### Aim 2 — Gemcitabine is a secondary confound, not the primary cause
+### Aim 2: Gemcitabine is a secondary confound, not the primary cause
 
-In gemcitabine-treated patients, the GPRC5A HR attenuates to non-significance (HR=1.22, p=0.221). In the fully adjusted multivariable model it remains significant (HR=1.44, p=3.89×10⁻⁶). Gemcitabine confounds the signal — it does not create it. Treatment-naive comparison is not feasible (n=1).
+In gemcitabine-treated patients, the GPRC5A HR attenuates to non-significance (HR=1.22, p=0.221). In the fully adjusted multivariable model it remains significant (HR=1.44, p=3.89×10⁻⁶). Gemcitabine confounds the signal, it does not create it. Treatment-naive comparison is not feasible (n=1).
 
 | ![Treatment boxplot](results/figures/aim2_treatment_boxplot.png) | ![Treatment stratified forest](results/figures/aim2_treatment_stratified_forest.png) |
 |:---:|:---:|
@@ -53,9 +53,9 @@ In gemcitabine-treated patients, the GPRC5A HR attenuates to non-significance (H
 
 ---
 
-### Aim 3 — Post-transcriptional regulation is not the driver
+### Aim 3: Post-transcriptional regulation is not the driver
 
-GPRC5A RNA–protein Spearman r = 0.571 across 140 matched CPTAC-PAAD samples. That puts it at the **84.6th genome-wide percentile** — among the better-translated genes in PDAC, not an outlier subject to repression.
+GPRC5A RNA–protein Spearman r = 0.571 across 140 matched CPTAC-PAAD samples. That puts it at the **84.6th genome-wide percentile**, among the better-translated genes in PDAC, not an outlier subject to repression.
 
 | ![RNA-protein scatter](results/figures/aim3_rna_protein_correlation.png) | ![Genome-wide RNA-protein](results/figures/aim3_genome_wide_rna_protein_cor.png) |
 |:---:|:---:|
@@ -63,7 +63,7 @@ GPRC5A RNA–protein Spearman r = 0.571 across 140 matched CPTAC-PAAD samples. T
 
 ---
 
-### Aim 4 — Zero somatic mutations in GPRC5A across TCGA-PAAD
+### Aim 4: Zero somatic mutations in GPRC5A across TCGA-PAAD
 
 No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regulatory, not structural** — pointing future work toward epigenomics and transcription factor binding.
 
@@ -73,7 +73,7 @@ No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regu
 
 ---
 
-### Aim 5 — ML classifier predicts GPRC5A functional role state
+### Aim 5: ML classifier predicts GPRC5A functional role state
 
 A leakage-free Random Forest trained on subtype scores and co-expression features predicts whether GPRC5A is acting oncogenically or suppressively in a given tumor.
 
@@ -87,7 +87,7 @@ A leakage-free Random Forest trained on subtype scores and co-expression feature
 
 | ![Calibration plot](results/figures/aim5_calibration_plot.png) | ![Role-state KM](results/figures/aim5_role_state_km.png) |
 |:---:|:---:|
-| *Classifier calibration on held-out test set* | *KM by predicted role state — directional trend, p=0.18 (n=12, underpowered)* |
+| *Classifier calibration on held-out test set* | *KM by predicted role state, directional trend, p=0.18 (n=12, underpowered)* |
 
 ---
 
@@ -133,7 +133,7 @@ source("R/aim4.R")
 source("R/aim5.R")
 ```
 
-All scripts use `here::here()` for paths — run from the project root. Outputs write automatically to `results/figures/` and `results/tables/`.
+All scripts use `here::here()` for paths, run from the project root. Outputs write automatically to `results/figures/` and `results/tables/`.
 
 ### 3. Data access
 
