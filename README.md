@@ -65,7 +65,7 @@ GPRC5A RNA–protein Spearman r = 0.571 across 140 matched CPTAC-PAAD samples. T
 
 ### Aim 4: Zero somatic mutations in GPRC5A across TCGA-PAAD
 
-No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regulatory, not structural** — pointing future work toward epigenomics and transcription factor binding.
+No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regulatory, not structural**, pointing future work toward epigenomics and transcription factor binding.
 
 | ![AlphaFold pLDDT](results/figures/aim4_plddt_mutation_overlay.png) | ![Lollipop mutation plot](results/figures/aim4_lollipop_mutation_plot.png) |
 |:---:|:---:|
