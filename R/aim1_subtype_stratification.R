@@ -365,19 +365,31 @@ write.csv(cox_summary, file.path(TABLES_DIR, "aim1_cox_results.csv"), row.names 
 # ── 11. Figure 5: Forest Plot of Cox Results ─────────────────────────────────
 message("Generating Figure 5: Forest plot...")
 
+# Extract interaction term (GPRC5A x subtype) from the interaction model
+int_tidy <- broom::tidy(cox_interaction, exponentiate = TRUE, conf.int = TRUE)
+int_row   <- int_tidy[int_tidy$term == "gprc5a_expr:subtype_moffittClassical", ]
+
 forest_data <- data.frame(
-  Model   = c("Overall (all subtypes)", "Classical subtype", "Basal-like subtype"),
+  Model   = c("Overall (all subtypes)", "Classical subtype",
+              "Basal-like subtype",
+              sprintf("Interaction (GPRC5A × Subtype)\np = %s (non-sig.)",
+                      format.pval(int_row$p.value, digits = 3))),
   HR      = c(coef(summary(cox_overall))[,"exp(coef)"],
               coef(summary(cox_classical))[,"exp(coef)"],
-              coef(summary(cox_basal))[,"exp(coef)"]),
+              coef(summary(cox_basal))[,"exp(coef)"],
+              int_row$estimate),
   lower   = c(exp(confint(cox_overall)),
               exp(confint(cox_classical)),
               exp(confint(cox_basal)))[c(1,3,5)],
   upper   = c(exp(confint(cox_overall)),
               exp(confint(cox_classical)),
               exp(confint(cox_basal)))[c(2,4,6)],
-  color   = c("Combined", "Classical", "Basal-like")
+  color   = c("Combined", "Classical", "Basal-like", "Interaction"),
+  stringsAsFactors = FALSE
 )
+# Append interaction CI separately (different data source)
+forest_data[4, "lower"] <- int_row$conf.low
+forest_data[4, "upper"] <- int_row$conf.high
 
 p_forest <- ggplot(forest_data, aes(x = HR, y = reorder(Model, HR),
                                      xmin = lower, xmax = upper,
@@ -385,17 +397,21 @@ p_forest <- ggplot(forest_data, aes(x = HR, y = reorder(Model, HR),
   geom_vline(xintercept = 1, linetype = "dashed", color = "grey50", linewidth = 0.8) +
   geom_errorbarh(height = 0.2, linewidth = 1.2) +
   geom_point(size = 4) +
-  scale_color_manual(values = c("Combined"  = "#7F8C8D",
-                                 "Classical"  = "#2E75B6",
-                                 "Basal-like" = "#C0392B")) +
+  scale_color_manual(values = c("Combined"    = "#7F8C8D",
+                                 "Classical"   = "#2E75B6",
+                                 "Basal-like"  = "#C0392B",
+                                 "Interaction" = "#8E44AD")) +
   scale_x_log10() +
   labs(
     title    = "GPRC5A Hazard Ratios by PDAC Molecular Subtype",
     subtitle = "Cox proportional hazards | TCGA-PAAD | GPRC5A per unit increase",
     x        = "Hazard Ratio (log scale)",
     y        = NULL,
-    color    = "Subtype",
-    caption  = "HR > 1: higher GPRC5A = worse prognosis (oncogenic direction)\nHR < 1: higher GPRC5A = better prognosis (paradoxical direction)"
+    color    = "Model",
+    caption  = paste0(
+      "HR > 1: higher GPRC5A = worse prognosis (oncogenic direction)\n",
+      "Interaction p = 0.272 (non-significant): subtype-differential effect not confirmed at this sample size"
+    )
   ) +
   theme_bw(base_size = 13) +
   theme(plot.title = element_text(face = "bold"),

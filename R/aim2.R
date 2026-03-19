@@ -254,7 +254,7 @@ for (stratum_name in names(strata)) {
       risk.table.height = 0.28,
       palette           = unname(this_palette),
       title             = sprintf("GPRC5A Prognosis — %s (n=%d)", stratum_name, n),
-      subtitle          = "Paradox resolves here if treatment-naive HR flips direction",
+      subtitle          = "Note: treatment-naive comparison not feasible (n=1); result shows HR attenuation in treated stratum",
       xlab              = "Time (months)",
       ylab              = "Overall Survival",
       legend.labs       = this_labs,
@@ -447,7 +447,7 @@ p_strat_forest <- ggplot(strat_cox_results,
   expand_limits(x = 3) +
   labs(
     title    = "GPRC5A Hazard Ratio Stratified by Treatment Status",
-    subtitle = "Resolution of paradox if treatment-naive HR flips direction",
+    subtitle = "HR attenuates in gemcitabine-treated patients (HR=1.22, p=0.221 vs HR=1.36, p<0.001 overall); treatment-naive comparison not feasible (n=1)",
     x        = "Hazard Ratio (log scale)",
     y        = NULL
   ) +

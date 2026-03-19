@@ -597,6 +597,8 @@ if (length(roc_list) > 0) {
          lwd = 2,
          bty = "n")
   abline(0, 1, lty = 2, col = "grey60")
+  mtext("Note: Labels derived from survival \u00d7 subtype; AUC reflects proof-of-concept, not independent prognostic prediction.",
+        side = 1, line = 4.5, cex = 0.72, col = "grey40")
   dev.off()
 }
 
@@ -811,7 +813,10 @@ if (!is.null(all_preds)) {
 }
 message("\nKey question answered:")
 message("  Can a tumor's GPRC5A role state be predicted from its transcriptome?")
-message("  => Check aim5_roc_curves.pdf for AUC and aim5_role_state_km.pdf")
+message("  => INTERPRETATION CAVEAT: Labels incorporate vital status; features (subtype scores)")
+  message("     correlate with survival. AUC reflects proof-of-concept subtype-context encoding,")
+  message("     not independent prognostic prediction. Validate in an external cohort.")
+  message("  => Check aim5_roc_curves.pdf for AUC and aim5_role_state_km.pdf")
 message("     for whether predicted role state separates survival curves")
 message("\nOutputs saved:")
 message(paste0("  ", FIGURES_DIR, "/aim5_*.pdf"))

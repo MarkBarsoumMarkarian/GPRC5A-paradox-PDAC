@@ -1,5 +1,7 @@
 # Data files (not tracked - see README for access)
 data/
+GDCdata/
+MANIFEST.txt
 *.rds
 *.rda
 
