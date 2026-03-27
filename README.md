@@ -157,7 +157,7 @@ The GPRC5A paradox manuscript is in preparation.
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT: see [LICENSE](LICENSE)
 
 ## Keywords
 
