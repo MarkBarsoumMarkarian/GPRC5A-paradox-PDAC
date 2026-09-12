@@ -1,0 +1,10 @@
+GPRC5A PDAC v2 run manifest
+Generated: 2026-09-12 14:44:13 UTC
+R: R version 4.5.3 (2026-03-11)
+Cohorts: TCGA_PAAD, CPTAC_PAAD, GSE85916, GSE57495, GSE62452
+Patients: 512
+Events: 312
+Pooled HR: 1.271
+Pooled 95% CI: 0.8892 to 1.817
+I2: 71.03
+No cross-platform harmonization was performed.

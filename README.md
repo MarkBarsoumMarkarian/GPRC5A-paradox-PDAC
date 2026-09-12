@@ -1,164 +1,134 @@
-# Decoding the GPRC5A Paradox in Pancreatic Ductal Adenocarcinoma
+# GPRC5A in PDAC: target expression is robust, prognosis is not
 
-**Mark Barsoum Markarian** · Faculty of Medicine, American University of Beirut ·
+**Mark Barsoum Markarian**
 
-> **The paradox:** A machine learning biomarker screen found that GPRC5A, a known oncogene in pancreatic cancer, was *lower* in patients who died. That is the opposite of what the biology predicts. This repository is the full investigation into why.
+Version 2 analysis · September 2026
 
----
+> **Correction:** the repository previously claimed that GPRC5A had opposite
+> survival associations in classical and basal-like PDAC and called this a
+> Simpson's paradox. The saved results do not support that claim. Both subtype
+> estimates point toward worse survival at higher expression, and the formal
+> interaction is not significant. See [CORRECTION_NOTICE.md](CORRECTION_NOTICE.md).
 
-## The Finding
+This repository now asks a narrower and more useful question: **can strong,
+cancer-cell-enriched expression make GPRC5A a plausible PDAC target even when
+its value as a prognostic biomarker does not transport reliably across cohorts?**
 
-Prior work ([Markarian 2025, bioRxiv](https://doi.org/10.1101/2025.11.14.688421)) identified GPRC5A as prognostically relevant in PDAC but flagged a contradiction: reduced expression in deceased patients. Three explanations were possible, molecular subtype mixing, gemcitabine-induced transcriptional confounding, or post-transcriptional regulation. This five-aim pipeline tests all three.
+## Version 2 result
 
-**Short answer: it is mostly Simpson's Paradox.**
+Five independent primary-tumour cohorts were analysed on their native platforms.
+GPRC5A was standardized *within each cohort*; platforms were never pooled or
+batch-corrected together. Overall survival was modelled with censoring-aware Cox
+regression and combined using a random-effects model with Hartung-Knapp inference.
 
-GPRC5A behaves differently depending on which molecular subtype of PDAC a tumor belongs to. When you pool both subtypes and look at bulk expression, the signal flips, not because the biology changed, but because the aggregate obscures two opposing subtype-specific associations.
+| Cohort | Platform | Patients / deaths | HR per SD (95% CI) | P |
+|---|---|---:|---:|---:|
+| TCGA-PAAD | RNA-seq | 176 / 92 | 2.01 (1.41–2.86) | 9.91×10⁻⁵ |
+| CPTAC-PAAD | RNA-seq | 129 / 72 | 0.92 (0.72–1.18) | 0.498 |
+| GSE85916 | Affymetrix U219 | 79 / 57 | 1.13 (0.85–1.51) | 0.394 |
+| GSE57495 | Rosetta/Merck microarray | 63 / 42 | 1.39 (1.00–1.93) | 0.048 |
+| GSE62452 | Affymetrix Gene 1.0 ST | 65 / 49 | 1.24 (0.91–1.69) | 0.171 |
 
----
+**Pooled:** HR 1.27, 95% CI 0.89–1.82, P=0.136; I²=71.0%; 95% prediction
+interval 0.53–3.03 (512 patients, 312 deaths).
 
-## Key Results
+![Five-cohort survival meta-analysis](results/v2/figures/forest_survival_meta.png)
 
-### Aim 1: Subtype stratification explains the paradox
+The pooled association is not statistically significant, heterogeneity is
+substantial, and leave-one-cohort-out estimates remain inconclusive. This does
+**not** validate GPRC5A as a transportable stand-alone prognostic biomarker.
+GSE62452 also fails the proportional-hazards check (P=0.023); its reported Cox HR
+is therefore an average over time. A clearly labelled post-hoc diagnostic finds
+HR 0.91 before 12 months and HR 1.83 afterward (time interaction P=0.019).
 
-Classical subtype (n=100): high GPRC5A → significantly **worse** survival (HR=1.53, p=0.0017)  
-Basal-like subtype (n=77): high GPRC5A → **better** relative survival (log-rank p=0.022)
+## What does replicate
 
-Pooling them without stratification creates an artifactual inverse signal... a textbook Simpson's Paradox.
+- **Tumour versus adjacent tissue:** in 45 exact GSE62452 patient pairs, tumour
+  expression was 2.20-fold higher on average (paired Wilcoxon P=6.03×10⁻⁸).
+- **Cancer versus stroma:** in 19 treatment-naive laser-capture pairs from
+  GSE164665, cancer-cell expression was 5.67-fold higher on average (paired
+  Wilcoxon P=2.31×10⁻⁴).
+- **RNA to protein:** in 135 matched CPTAC PDAC tumours, RNA and protein were
+  moderately concordant (Spearman rho=0.567, P=7.40×10⁻¹³).
+- **No subtype reversal:** within TCGA, both reconstructed Moffitt groups had
+  adverse point estimates (basal-like HR 1.71; classical HR 2.50), while the
+  age- and stage-adjusted GPRC5A-by-subtype interaction was not significant
+  (P=0.254).
 
-| ![KM curves by subtype](results/figures/aim1_kaplan_meier_by_subtype.png) | ![Forest plot](results/figures/aim1_forest_plot.png) |
-|:---:|:---:|
-| *Kaplan–Meier by subtype — opposing directionality* | *Cox HRs across models including interaction term (p=0.272, n.s.)* |
+![Paired compartment analyses](results/v2/figures/compartment_expression.png)
 
-| ![Expression heatmap](results/figures/aim1_expression_heatmap.png) | ![Subtype score scatter](results/figures/aim1_subtype_score_scatter.png) |
-|:---:|:---:|
-| *GPRC5A co-clusters with the classical gene signature* | *GPRC5A expression vs. Moffitt composite subtype score* |
+![Matched CPTAC RNA and protein](results/v2/figures/cptac_rna_protein.png)
 
-| ![Expression boxplot](results/figures/aim1_gprc5a_subtype_boxplot.png) |
-|:---:|
-| *Within-subtype expression: higher GPRC5A consistently associates with worse survival in both subtypes (Classical p=5.9×10⁻⁵, Basal-like p=0.0099)* |
+These observations support **cancer-cell enrichment and measurable protein
+translation**, not therapeutic efficacy. Cell-surface accessibility, normal-
+tissue safety, and treatment response still require direct experimental work.
 
----
+## Interpretation
 
-### Aim 2: Gemcitabine is a secondary confound, not the primary cause
+The defensible “paradox” is translational rather than Simpsonian:
 
-In gemcitabine-treated patients, the GPRC5A HR attenuates to non-significance (HR=1.22, p=0.221). In the fully adjusted multivariable model it remains significant (HR=1.44, p=3.89×10⁻⁶). Gemcitabine confounds the signal, it does not create it. Treatment-naive comparison is not feasible (n=1).
+> GPRC5A has a reproducible target-expression phenotype, but its bulk-tumour
+> survival association is cohort-dependent and insufficiently transportable for
+> stand-alone prognosis.
 
-| ![Treatment boxplot](results/figures/aim2_treatment_boxplot.png) | ![Treatment stratified forest](results/figures/aim2_treatment_stratified_forest.png) |
-|:---:|:---:|
-| *GPRC5A expression by treatment group and vital status* | *HR attenuation in gemcitabine-treated patients* |
+This distinction matters because target candidacy and prognostic performance are
+different questions. Recent independent spatial work likewise reports broad
+GPRC5A expression across malignant PDAC regions, while cautioning that normal-
+tissue expression and protein-level validation determine the therapeutic window
+([Guo et al., 2025](https://doi.org/10.1016/j.celrep.2025.116191)).
+Earlier functional studies already support oncogenic and drug-resistance roles;
+version 2 does not claim to rediscover them
+([Zhou et al., 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC4973341/)).
 
-| ![Multivariable forest](results/figures/aim2_forest_multivariable.png) | ![KM by treatment stratum](results/figures/aim2_km_by_treatment_stratum.png) |
-|:---:|:---:|
-| *GPRC5A HR stable across five multivariable adjustment models* | *KM curves stratified by treatment group* |
+## Reproduce version 2
 
----
+Requirements: R 4.x and the recommended `survival` package. No Bioconductor
+installation is needed for the main run.
 
-### Aim 3: Post-transcriptional regulation is not the driver
-
-GPRC5A RNA–protein Spearman r = 0.571 across 140 matched CPTAC-PAAD samples. That puts it at the **84.6th genome-wide percentile**, among the better-translated genes in PDAC, not an outlier subject to repression.
-
-| ![RNA-protein scatter](results/figures/aim3_rna_protein_correlation.png) | ![Genome-wide RNA-protein](results/figures/aim3_genome_wide_rna_protein_cor.png) |
-|:---:|:---:|
-| *GPRC5A RNA vs. protein across 140 matched CPTAC-PAAD samples (r=0.571)* | *GPRC5A at 84.6th percentile of 4,491 genome-wide gene pairs* |
-
----
-
-### Aim 4: Zero somatic mutations in GPRC5A across TCGA-PAAD
-
-No recurrent coding mutations across 177 samples. GPRC5A dysregulation is **regulatory, not structural**, pointing future work toward epigenomics and transcription factor binding.
-
-| ![AlphaFold pLDDT](results/figures/aim4_plddt_mutation_overlay.png) | ![Lollipop mutation plot](results/figures/aim4_lollipop_mutation_plot.png) |
-|:---:|:---:|
-| *AlphaFold2 per-residue confidence with domain annotations* | *Empty somatic mutation track, null result is the finding* |
-
----
-
-### Aim 5: ML classifier predicts GPRC5A functional role state
-
-A leakage-free Random Forest trained on subtype scores and co-expression features predicts whether GPRC5A is acting oncogenically or suppressively in a given tumor.
-
-- Held-out test AUC: **0.833** · LOOCV AUC: 0.758  
-- GPRC5A expression ranks **23rd** in feature importance, the broader subtype context matters more than the gene itself  
-- *Caveat: labels incorporate vital status; AUC reflects proof-of-concept subtype-context encoding, not independent prognostic prediction*
-
-| ![ROC curves](results/figures/aim5_roc_curves.png) | ![Feature importance](results/figures/aim5_feature_importance.png) |
-|:---:|:---:|
-| *Held-out test ROC, RF AUC=0.833* | *Classical co-expression features dominate (GPRC5A ranks 23rd)* |
-
-| ![Calibration plot](results/figures/aim5_calibration_plot.png) | ![Role-state KM](results/figures/aim5_role_state_km.png) |
-|:---:|:---:|
-| *Classifier calibration on held-out test set* | *KM by predicted role state, directional trend, p=0.18 (n=12, underpowered)* |
-
----
-
-## Repository Structure
-
-```
-gprc5a-paradox-pdac/
-├── R/
-│   ├── utils_clinical.R                  # TCGAbiolinks version-agnostic clinical utilities
-│   ├── aim1_subtype_stratification.R     # Moffitt classifier + subtype-stratified Cox
-│   ├── aim2.R                            # Gemcitabine deconfounding + multivariable Cox
-│   ├── aim3.R                            # CPTAC RNA–protein correlation + genome-wide benchmarking
-│   ├── aim4.R                            # AlphaFold2 domain mapping + somatic mutation extraction
-│   ├── aim5.R                            # Leakage-free RF / XGBoost / logistic classifier
-│   └── regen_figures.R                   # Regenerate fixed figures from pre-computed tables
-├── results/
-│   ├── figures/                          # PNG figures (embedded above) + PDFs
-│   └── tables/                           # CSV result tables for all aims
-└── data/                                 # Not tracked — see Data Access
+```bash
+Rscript R/v2/run_v2.R
 ```
 
-## Reproducing the Analysis
+The script downloads public source files, checksums them, applies explicit
+specimen and survival eligibility rules, and rebuilds every version 2 table and
+figure under `results/v2/`. See:
 
-### 1. Install dependencies
+- [Analysis protocol](docs/V2_PROTOCOL.md)
+- [Manuscript-ready results and limitations](docs/V2_RESULTS.md)
+- [Pipeline documentation](R/v2/README.md)
+- [Input manifest](results/v2/tables/input_manifest.csv)
+- [Detailed sample flow](results/v2/tables/sample_flow_details.csv)
+- [All cohort estimates](results/v2/tables/cohort_cox_results.csv)
+- [Clinical-adjustment sensitivity](results/v2/tables/cohort_adjusted_sensitivity.csv)
+- [Leave-one-cohort-out analysis](results/v2/tables/leave_one_cohort_out.csv)
 
-```r
-install.packages(c("here", "dplyr", "ggplot2", "pheatmap", "survival",
-                   "survminer", "viridis", "RColorBrewer", "sva",
-                   "caret", "randomForest", "xgboost", "glmnet", "pROC"))
+## Repository layout
 
-if (!requireNamespace("BiocManager")) install.packages("BiocManager")
-BiocManager::install(c("TCGAbiolinks", "DESeq2"))
+```text
+R/v2/run_v2.R          primary reproducible analysis
+config/                explicit microarray probe mapping
+docs/                  protocol and manuscript-ready interpretation
+results/v2/tables/     version 2 numerical outputs
+results/v2/figures/    version 2 figures
+R/aim*.R               superseded legacy scripts, retained for auditability
+results/tables/        superseded legacy outputs
+results/figures/       superseded legacy figures
 ```
 
-### 2. Run in order
+The legacy machine-learning “role-state” classifier is withdrawn: its outcome
+was partly constructed from vital status, subtype, and GPRC5A while related
+variables were reused as predictors. Its AUC cannot establish independent
+prediction. Treatment-stratified legacy analyses are also not causal evidence
+because treatment timing and a viable untreated comparator were unavailable.
 
-```r
-source("R/utils_clinical.R")               # must be sourced first
-source("R/aim1_subtype_stratification.R")  # downloads TCGA-PAAD on first run
-source("R/aim2.R")
-source("R/aim3.R")                         # requires CPTAC data in data/cptac/
-source("R/aim4.R")
-source("R/aim5.R")
-```
+## Scope and status
 
-All scripts use `here::here()` for paths, run from the project root. Outputs write automatically to `results/figures/` and `results/tables/`.
-
-### 3. Data access
-
-| Dataset | Where |
-|---|---|
-| TCGA-PAAD (RNA-seq, clinical, mutations) | Auto-downloaded via `TCGAbiolinks` from GDC on first run |
-| CPTAC-PAAD proteomics | [CPTAC Data Portal](https://cptac-data-portal.georgetown.edu) |
-| AlphaFold2 GPRC5A structure (Q8NFJ5) | [AlphaFold DB](https://alphafold.ebi.ac.uk/entry/Q8NFJ5) |
-
----
-
-## Citation
-
-If you use this code, please cite the companion preprint:
-
-> Markarian MB. Batch-harmonized machine learning framework for cross-cohort RNA biomarker discovery in pancreatic adenocarcinoma. *bioRxiv*. 2025. https://doi.org/10.1101/2025.11.14.688421
-
-The GPRC5A paradox manuscript is in preparation.
-
----
+This is a computational reanalysis of public retrospective cohorts. It is not a
+clinical test and does not establish treatment benefit. The revised manuscript
+is in preparation. The earlier batch-harmonization preprint nominated GPRC5A,
+but the present survival claims should be cited only from this corrected version
+once separately archived.
 
 ## License
 
-MIT: see [LICENSE](LICENSE)
-
-## Keywords
-
-`GPRC5A` · `PDAC` · `pancreatic cancer` · `Simpson paradox` · `Moffitt subtypes` · `gemcitabine` · `CPTAC` · `AlphaFold2` · `machine learning` · `oncogenic switching` · `R` · `bioinformatics`
+MIT; see [LICENSE](LICENSE).

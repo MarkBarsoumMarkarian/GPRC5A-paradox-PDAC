@@ -1,0 +1,5 @@
+cohort,platform,probe_id,gene,aggregation,annotation_source
+GSE85916,GPL13667,11719791_s_at,GPRC5A,mean,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL13667
+GSE85916,GPL13667,11719792_at,GPRC5A,mean,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL13667
+GSE57495,GPL15048,merck-NM_003979_at,GPRC5A,single,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL15048
+GSE62452,GPL6244,7954065,GPRC5A,single,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL6244
