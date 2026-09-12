@@ -32,6 +32,12 @@ heterogeneity and cellular compartment expression. The scripts in `R/aim1_*`
 through `R/aim5.R` are preserved for auditability but are superseded by the
 versioned workflow under `R/v2/`.
 
+The v2 eligibility audit also found that the broad TCGA-PAAD collection
+contains non-ductal, unspecified and other pancreatic histologies. Restricting
+TCGA to explicitly annotated ductal adenocarcinoma reduced the survival set to
+145 patients and materially attenuated the TCGA association (HR 1.27, 95% CI
+0.99-1.63, P=0.060). This strict histology rule is now enforced by the v2 code.
+
 ## What remains potentially useful
 
 - GPRC5A is a biologically plausible and experimentally supported PDAC target.

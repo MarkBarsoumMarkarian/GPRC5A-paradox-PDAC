@@ -10,7 +10,9 @@ The study does not assume a paradox, a subtype reversal or a functional switch.
 ## Primary analysis
 
 1. Include one primary tumour per patient with positive overall-survival time
-   and an explicit censoring indicator.
+   and an explicit censoring indicator. For TCGA, require the deposited tumour
+   type to be explicitly `Pancreas Adenocarcinoma, Ductal Type`; do not treat
+   every specimen in the broader PAAD collection as PDAC.
 2. Analyse each cohort on its native platform. Do not merge expression matrices
    and do not use cross-platform ComBat.
 3. Transform GPRC5A to a within-cohort z score so hazard ratios describe a

@@ -23,19 +23,19 @@ regression and combined using a random-effects model with Hartung-Knapp inferenc
 
 | Cohort | Platform | Patients / deaths | HR per SD (95% CI) | P |
 |---|---|---:|---:|---:|
-| TCGA-PAAD | RNA-seq | 176 / 92 | 2.01 (1.41–2.86) | 9.91×10⁻⁵ |
+| TCGA-PAAD | RNA-seq | 145 / 84 | 1.27 (0.99–1.63) | 0.060 |
 | CPTAC-PAAD | RNA-seq | 129 / 72 | 0.92 (0.72–1.18) | 0.498 |
 | GSE85916 | Affymetrix U219 | 79 / 57 | 1.13 (0.85–1.51) | 0.394 |
 | GSE57495 | Rosetta/Merck microarray | 63 / 42 | 1.39 (1.00–1.93) | 0.048 |
 | GSE62452 | Affymetrix Gene 1.0 ST | 65 / 49 | 1.24 (0.91–1.69) | 0.171 |
 
-**Pooled:** HR 1.27, 95% CI 0.89–1.82, P=0.136; I²=71.0%; 95% prediction
-interval 0.53–3.03 (512 patients, 312 deaths).
+**Pooled:** HR 1.16, 95% CI 0.94–1.43, P=0.118; I²=28.2%; 95% prediction
+interval 0.80–1.69 (481 patients, 304 deaths).
 
 ![Five-cohort survival meta-analysis](results/v2/figures/forest_survival_meta.png)
 
 The pooled association is not statistically significant, heterogeneity is
-substantial, and leave-one-cohort-out estimates remain inconclusive. This does
+moderate, and leave-one-cohort-out estimates remain inconclusive. This does
 **not** validate GPRC5A as a transportable stand-alone prognostic biomarker.
 GSE62452 also fails the proportional-hazards check (P=0.023); its reported Cox HR
 is therefore an average over time. A clearly labelled post-hoc diagnostic finds
@@ -51,9 +51,9 @@ HR 0.91 before 12 months and HR 1.83 afterward (time interaction P=0.019).
 - **RNA to protein:** in 135 matched CPTAC PDAC tumours, RNA and protein were
   moderately concordant (Spearman rho=0.567, P=7.40×10⁻¹³).
 - **No subtype reversal:** within TCGA, both reconstructed Moffitt groups had
-  adverse point estimates (basal-like HR 1.71; classical HR 2.50), while the
+  adverse point estimates (basal-like HR 1.12; classical HR 1.41), while the
   age- and stage-adjusted GPRC5A-by-subtype interaction was not significant
-  (P=0.254).
+  (P=0.146).
 
 ![Paired compartment analyses](results/v2/figures/compartment_expression.png)
 

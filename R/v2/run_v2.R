@@ -219,9 +219,13 @@ make_cohort <- function(name, platform, sample_id, time, event, expression,
 
 # TCGA-PAAD PanCancer Atlas ---------------------------------------------------
 tcga_patient <- read_cbio(file.path(cache_dir, "data_clinical_patient.txt"))
-tcga_sample <- read_cbio(file.path(cache_dir, "data_clinical_sample.txt"))
+tcga_sample_all <- read_cbio(file.path(cache_dir, "data_clinical_sample.txt"))
 tcga_expr <- read_cbio(file.path(cache_dir, "data_mrna_seq_v2_rsem.txt"))
-tcga_sample <- tcga_sample[tcga_sample$SAMPLE_TYPE == "Primary", , drop = FALSE]
+tcga_sample <- tcga_sample_all[
+  tcga_sample_all$SAMPLE_TYPE == "Primary" &
+    tcga_sample_all$TUMOR_TYPE == "Pancreas Adenocarcinoma, Ductal Type",
+  , drop = FALSE
+]
 tcga_clin <- merge(tcga_sample, tcga_patient, by = "PATIENT_ID", all.x = TRUE, sort = FALSE)
 tcga_clin$event <- ifelse(
   grepl("^1:", tcga_clin$OS_STATUS), 1L,
@@ -367,10 +371,10 @@ write.csv(cohort_flow, file.path(table_dir, "cohort_flow.csv"), row.names = FALS
 
 sample_flow <- data.frame(
   cohort = names(cohorts),
-  accession_samples = c(nrow(tcga_sample), nrow(cptac_sample), length(g859_id),
+  accession_samples = c(nrow(tcga_sample_all), nrow(cptac_sample), length(g859_id),
                         length(g574_id), length(g624_id)),
   eligible_specimen_type = c(
-    sum(tcga_sample$SAMPLE_TYPE == "Primary"),
+    nrow(tcga_sample),
     sum(grepl("ductal", cptac_patient$HISTOLOGY_DIAGNOSIS, ignore.case = TRUE)),
     sum(tolower(g859_source) == "pancreatic tumor"),
     length(g574_id),
@@ -378,14 +382,14 @@ sample_flow <- data.frame(
   ),
   expression_and_survival_complete = vapply(cohorts, nrow, integer(1)),
   excluded_from_survival = c(
-    nrow(tcga_sample) - nrow(tcga),
+    nrow(tcga_sample_all) - nrow(tcga),
     nrow(cptac_sample) - nrow(cptac),
     length(g859_id) - nrow(gse85916),
     length(g574_id) - nrow(gse57495),
     length(g624_id) - nrow(gse62452)
   ),
   exclusion_note = c(
-    "missing/nonpositive OS time, non-explicit status, or no matched expression",
+    "non-ductal/unspecified histology, missing/nonpositive OS time, non-explicit status, or no matched expression",
     "adenosquamous histology or missing/nonpositive OS data",
     "one sample with missing OS time",
     "none",
@@ -838,8 +842,8 @@ dev.off()
 
 # Fail loudly if a parser, eligibility rule, or upstream file changes.
 stopifnot(
-  identical(unname(cohort_flow$patients), c(176L, 129L, 79L, 63L, 65L)),
-  identical(unname(cohort_flow$events), c(92L, 72L, 57L, 42L, 49L)),
+  identical(unname(cohort_flow$patients), c(145L, 129L, 79L, 63L, 65L)),
+  identical(unname(cohort_flow$events), c(84L, 72L, 57L, 42L, 49L)),
   all(vapply(cohorts, function(x) all(x$specimen_class == "primary_tumor"), logical(1))),
   nrow(pairs624) == 45L,
   length(shared_lcm) == 19L,
