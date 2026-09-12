@@ -4,6 +4,10 @@
 
 Version 2 analysis · September 2026
 
+**Preprint status:** A corrected version 2 was submitted to Research Square on
+12 September 2026 and is awaiting posting. The article identifier remains
+`rs-9237732`; once posted, cite the version-specific DOI ending in `/v2`.
+
 > **Correction:** the repository previously claimed that GPRC5A had opposite
 > survival associations in classical and basal-like PDAC and called this a
 > Simpson's paradox. The saved results do not support that claim. Both subtype
@@ -124,10 +128,10 @@ because treatment timing and a viable untreated comparator were unavailable.
 ## Scope and status
 
 This is a computational reanalysis of public retrospective cohorts. It is not a
-clinical test and does not establish treatment benefit. The revised manuscript
-is in preparation. The earlier batch-harmonization preprint nominated GPRC5A,
-but the present survival claims should be cited only from this corrected version
-once separately archived.
+clinical test and does not establish treatment benefit. The corrected manuscript
+has been submitted to Research Square as version 2 and is awaiting posting. The
+earlier batch-harmonization preprint nominated GPRC5A, but the present survival
+claims should be cited only from the corrected version once it is public.
 
 ## License
 
